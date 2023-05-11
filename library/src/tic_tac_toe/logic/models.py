@@ -1,7 +1,10 @@
+from __future__ import annotations
 import enum
 import re
 from dataclasses import dataclass
 from functools import cached_property
+from tic_tac_toe.logic.validators import validate_game_state, validate_grid
+
 
 WINNING_PATTERNS = (
     "???......",
@@ -29,8 +32,7 @@ class Grid:
     cells: str= " " * 9 
 
     def __post_init__(self) -> None:
-        if not re.match(r"^[\sXO]{9}$", self.cells):
-            raise ValueError("Grid must contain 9 cells of: X, O or Space")
+        validate_grid(self)
     
     @cached_property
     def x_count(self) -> int:
@@ -58,6 +60,9 @@ class Move:
 class GameState:
     grid: Grid
     startingMark: Mark = Mark.CROSS
+
+    def __post_init__(self):
+        validate_game_state(self)
 
     @cached_property
     def current_mark(self) -> Mark:
