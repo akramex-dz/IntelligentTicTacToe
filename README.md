@@ -1,1 +1,1 @@
-"# IntelligentTicTacToe" 
+"# IntelligentTicTacToe using python and MinMax Algroithm
