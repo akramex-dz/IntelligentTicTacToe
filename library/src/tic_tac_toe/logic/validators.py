@@ -1,8 +1,11 @@
 from __future__ import annotations
+
+from builtins import ValueError
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from tic_tac_toe.logic.models import Grid, GameState, Mark
+    from tic_tac_toe.game.players import Player
 
 import re
 
@@ -57,3 +60,8 @@ def validate_winner(
         else:
             if grid.o_count != grid.x_count:
                 raise InvalidGameState("Wrong number of Os on the grid, num of Os should be equal to num of Xs")
+
+
+def validate_players(player1: Player, player2: Player) -> None:
+    if player1.mark is player2.mark:
+        raise ValueError("Players must use different marks")
