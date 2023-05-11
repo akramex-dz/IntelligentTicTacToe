@@ -1,0 +1,8 @@
+pyproject.toml
+src/__init__.py
+src/IntelligentTicTacToe.egg-info/PKG-INFO
+src/IntelligentTicTacToe.egg-info/SOURCES.txt
+src/IntelligentTicTacToe.egg-info/dependency_links.txt
+src/IntelligentTicTacToe.egg-info/top_level.txt
+src/game/__init__.py
+src/logic/__init__.py
