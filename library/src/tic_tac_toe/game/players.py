@@ -1,8 +1,8 @@
 import abc
 import time
-import random
 
 from tic_tac_toe.logic.exceptions import InvalidMove
+from tic_tac_toe.logic.minimax import find_best_move
 from tic_tac_toe.logic.models import GameState, Mark, Move
 
 
@@ -39,7 +39,14 @@ class ComputerPlayer(Player, metaclass=abc.ABCMeta):
 
 class RandomComputerPlayer(ComputerPlayer):
     def get_computer_move(self, game_state: GameState) -> Move | None:
-        try:
-            return random.choice(game_state.possible_moves)
-        except IndexError:
-            return None
+        return game_state.make_random_move()
+
+
+class MinimaxComputerPlayer(ComputerPlayer):
+    def get_computer_move(self, game_state: GameState) -> Move | None:
+        if game_state.game_not_started:
+            # minimax if given an empty grid plays allways a1 but takes time executing
+            # therefore the move is hardcoded
+            return game_state.make_move_to(0)
+        else:
+            return find_best_move(game_state)
