@@ -1,1 +1,1 @@
-"# IntelligentTicTacToe using python and MinMax Algroithm
+IntelligentTicTacToe using python and MinMax Algroithm
